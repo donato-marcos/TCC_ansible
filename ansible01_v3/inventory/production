@@ -1,0 +1,42 @@
+[ssambasvr01_service]
+ssambasvr01_host1 ansible_host=10.10.100.30
+
+[sdcsvr01_service]
+sdcsvr01_host1 ansible_host=10.10.100.10
+sdcsvr02_host1 ansible_host=10.10.100.11
+
+[swebdmz01_service]
+swebdmz01_host1 ansible_host=10.10.200.20
+
+[nfirewall01_service]
+nfirewall01_host1 ansible_host=10.10.1.2
+
+[sdnsdmz01_service]
+sdnsdmz01_host1 ansible_host=10.10.200.10
+
+[clientes_win_service]
+clientes_host1 ansible_host=cwinfin01.fatec.lab
+
+[clientes_linux_service]
+clientes_host2 ansible_host=clinuxti02.fatec.lab
+
+[ncore01_service]
+ncore01_host1 ansible_host=10.10.1.3
+
+[linux:children]
+ssambasvr01_service
+swebdmz01_service
+sdnsdmz01_service
+clientes_linux_service
+
+[windows:children]
+sdcsvr01_service
+clientes_win_service
+
+[clientes:children]
+clientes_win_service
+clientes_linux_service
+
+[vyos:children]
+ncore01_service
+nfirewall01_service

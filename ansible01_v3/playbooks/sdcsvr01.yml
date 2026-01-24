@@ -1,0 +1,6 @@
+---
+- name: Configurar Domain Controller
+  hosts: sdcsvr01_service
+  gather_facts: yes
+  roles:
+    - sdcsvr01

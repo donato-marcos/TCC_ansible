@@ -1,0 +1,22 @@
+---
+
+# Nome do servidor
+server_name: "sdcsvr01"
+
+# Configurações do Domínio
+ad_domain_name: "fatec.lab"
+ad_netbios_name: "FATEC"
+ad_domain_mode: "Win2025"
+ad_forest_mode: "Win2025"
+
+# Senha do Modo de Restauração
+ad_safe_mode_password: "@lunoFat3c"
+
+# Caminhos de instalação
+ad_db_path: "C:\\Windows\\NTDS"
+ad_log_path: "C:\\Windows\\NTDS"
+ad_sysvol_path: "C:\\Windows\\SYSVOL"
+
+# Configurações de DNS
+ad_install_dns: true
+ad_create_dns_delegation: false

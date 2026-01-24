@@ -1,0 +1,13 @@
+---
+
+hostname: nfirewall01
+
+interfaces:
+  - name: eth0
+    description: WAN - Internet
+    address: dhcp
+  - name: eth2
+    description: uplink - CORE
+    address: 10.10.1.2/29
+
+  

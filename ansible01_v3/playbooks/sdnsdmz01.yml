@@ -1,0 +1,8 @@
+---
+
+- name: Configurar Servidor DNS
+  hosts: sdnsdmz01_service
+  become: yes
+  gather_facts: yes
+  roles:
+    - sdnsdmz01
