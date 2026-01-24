@@ -8,9 +8,9 @@ sites:
 
 interfaces:
   - name: enp1s0
-    ipv4: 10.10.200.20/24
-    gw4: 10.10.200.254
+    ipv4: 10.20.200.20/24
+    gw4: 10.20.200.254
     dns4:
-      - 10.10.200.10
+      - 10.20.200.10
     type: ethernet
     autoconnect: true
