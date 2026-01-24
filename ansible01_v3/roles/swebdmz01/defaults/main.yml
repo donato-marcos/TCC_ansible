@@ -1,0 +1,11 @@
+---
+nginx_version: 1.20.1
+
+firewall_services:
+  - http
+  - https
+
+sites:
+  - name: www
+    web_site: www.fatec.lab
+    web_dir: /var/www/www.fatec.lab/html

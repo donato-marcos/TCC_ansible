@@ -1,0 +1,21 @@
+options {
+    directory "{{ bind_cache_dir }}";
+
+    listen-on port 53 { 127.0.0.1; {{ ansible_default_ipv4.address }}; };
+    listen-on-v6 port 53 { none; };
+    allow-query {
+        {% for query in allow_query %}
+        {{ query }};
+        {% endfor %}
+    };
+    recursion yes;
+
+    forwarders {
+        {% for forwarder in forwarders %}
+        {{ forwarder }};
+        {% endfor %}
+    };
+
+    dnssec-validation auto;
+
+};

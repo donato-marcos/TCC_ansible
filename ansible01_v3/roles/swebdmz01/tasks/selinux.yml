@@ -1,0 +1,35 @@
+---
+
+- name: Garantir SELinux está ativado
+  ansible.posix.selinux:
+    policy: targeted
+    state: enforcing
+  register: selinux_status
+
+- name: Reiniciar o servidor se o SELinux exigir ativação
+  ansible.builtin.reboot:
+    msg: "Reiniciando para aplicar ativação do SELinux"
+  when: selinux_status.reboot_required
+
+- name: Atualizar facts após reboot
+  ansible.builtin.setup:
+  when: selinux_status.reboot_required
+
+- name: Ajustar contextos SELinux para os diretórios dos sites
+  community.general.sefcontext:
+    target: "{{ item.web_dir }}(/.*)?"
+    setype: httpd_sys_content_t
+    state: present
+  loop: "{{ sites }}"
+  loop_control:
+    label: "Ajustando contextos em: {{ item.web_dir }} - {{ item.web_site }}"
+  when: ansible_selinux.status == "enabled"
+  notify: Restaurar contextos SELinux
+
+- name: Permitir NGINX a se conectar à rede (SELinux)
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+  when: ansible_selinux.status == "enabled"
+

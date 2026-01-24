@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FATEC Lab — Infraestrutura com Ansible</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+  <div class="container">
+    <main class="main-content">
+      <header class="main-header">
+        <h1>FATEC Osasco Lab</h1>
+        <p class="subtitle">Ambiente de Automação e Gerenciamento com Ansible</p>
+      </header>
+
+      <section class="intro">
+        <p>Este servidor (<code>SwebDMZ01</code>) integra o projeto de TCC:<br>
+        <strong>"Automação do Gerenciamento de Servidores com Ansible"</strong>, desenvolvido por Evellyn Patricia Adolfo e Marcos Donato.</p>
+      </section>
+
+      <section>
+        <h2>Serviços neste Host</h2>
+        <ul class="list">
+          <li>Servidor Web público (Nginx)</li>
+          <li>Página institucional estática</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Segmentação do Laboratório</h2>
+        <ul class="list">
+          <li><strong>REDE TI (10)</strong>: Estações Linux</li>
+          <li><strong>REDE FIN (20)</strong>: Estações Windows</li>
+          <li><strong>REDE SERVER (100)</strong>: AD, Ansible, Samba, NTP</li>
+          <li><strong>REDE DMZ (200)</strong>: Web e DNS público</li>
+          <li><strong>REDE MGMT (50)</strong>: Gerenciamento seguro</li>
+        </ul>
+      </section>
+
+      <p class="note">⚠️ Ambiente acadêmico — sem dados sensíveis.</p>
+    </main>
+
+    <aside class="sidebar">
+      <section class="card">
+        <h2>🌐 Topologia do Laboratório</h2>
+        <p>Diagrama ilustrando a segmentação da rede e principais componentes administrados pelo Ansible.</p>
+
+        <div class="network-diagram">
+          <img src="topologia_projeto.png" alt="Diagrama de rede do laboratório" />
+          <p class="caption">Figura 1 – Topologia do Projeto (Autores, 2025)</p>
+        </div>
+
+
+      </section>
+
+    </aside>
+  </div>
+
+  <footer>
+    <p>© 2025 FATEC Osasco — Redes de Computadores</p>
+    <p class="footer-note">Projeto de TCC: Automação do Gerenciamento de Servidores com Ansible</p>
+  </footer>
+</body>
+</html>

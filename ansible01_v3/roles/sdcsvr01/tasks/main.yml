@@ -1,0 +1,27 @@
+---
+
+- name: Garantir que o nome do host está correto
+  ansible.windows.win_hostname:
+    name: "{{ server_name }}"
+  register: hostname_change
+
+- name: Reiniciar se o nome for alterado
+  ansible.windows.win_reboot:
+    reboot_timeout: 600
+  when: hostname_change.reboot_required
+
+- name: Configurar Domain Controller
+  import_tasks: ad_ds.yml
+  tags: DC
+
+- name: Configurar DNS
+  import_tasks: dns.yml
+  tags: dns
+
+- name: Configurar DHCP server
+  import_tasks: dhcp.yml
+  tags: dhcp
+
+- name: Configurar usuários 
+  import_tasks: users_groups.yml
+  tags: users

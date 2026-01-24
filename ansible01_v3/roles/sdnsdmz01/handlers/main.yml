@@ -1,0 +1,12 @@
+---
+
+- name: Aplicar Netplan
+  ansible.builtin.command: netplan apply
+
+- name: Validar configuracao global
+  ansible.builtin.command: named-checkconf
+
+- name: Reiniciar o serviço BIND9
+  ansible.builtin.service:
+    name: bind9.service
+    state: restarted

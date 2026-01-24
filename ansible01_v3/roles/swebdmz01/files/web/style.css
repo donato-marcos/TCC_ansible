@@ -1,0 +1,279 @@
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-light: #555;
+  --border: #e0e0e0;
+  --note-bg: #fff8e1;
+  --note-text: #5d4037;
+  --card-bg: #fafafa;
+  --primary: #0056b3;
+  --primary-light: #e6f0ff;
+  --success: #2e7d32;
+  --vlan-ti: #4caf50;
+  --vlan-fin: #2196f3;
+  --vlan-server: #ff9800;
+  --vlan-dmz: #f44336;
+  --vlan-mgmt: #9c27b0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #e0e0e0;
+    --text-light: #aaa;
+    --border: #333;
+    --note-bg: #2c281e;
+    --note-text: #d7b768;
+    --card-bg: #1d1d1d;
+    --primary: #4dabf7;
+    --primary-light: #1a365d;
+    --success: #81c784;
+    --vlan-ti: #388e3c;
+    --vlan-fin: #1976d2;
+    --vlan-server: #f57c00;
+    --vlan-dmz: #d32f2f;
+    --vlan-mgmt: #7b1fa2;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.sidebar {
+  width: 100%;
+  max-width: 570px;
+}
+
+header.main-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+header.main-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.4rem;
+  color: var(--primary);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+.list {
+  margin-left: 1.5rem;
+  line-height: 1.8;
+}
+
+.list li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+code {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.network-diagram {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.network-diagram img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.5rem;
+}
+
+.caption {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.note {
+  background: var(--note-bg);
+  color: var(--note-text);
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-top: 2rem;
+  border-left: 4px solid var(--note-text);
+}
+
+.legend {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+
+.legend h3 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-light);
+}
+
+.legend ul {
+  list-style: none;
+  margin-left: 0;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.color-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.color-dot.ti { background-color: var(--vlan-ti); }
+.color-dot.fin { background-color: var(--vlan-fin); }
+.color-dot.server { background-color: var(--vlan-server); }
+.color-dot.dmz { background-color: var(--vlan-dmz); }
+.color-dot.mgmt { background-color: var(--vlan-mgmt); }
+
+.status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dotted var(--border);
+}
+
+.status-label {
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.status-value {
+  font-weight: 600;
+}
+
+.status-value.active {
+  color: var(--success);
+  background: rgba(46, 125, 50, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  padding-top: 2rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1.5rem 1rem;
+  }
+
+  header.main-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+
+  .network-diagram img {
+    max-height: 250px;
+  }
+}

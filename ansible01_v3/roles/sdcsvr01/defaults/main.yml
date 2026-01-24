@@ -1,0 +1,47 @@
+---
+# Configurações do Domínio
+ad_domain_name: "fatec.lab"
+ad_netbios_name: "FATEC"
+ad_domain_mode: "WinThreshold"
+ad_forest_mode: "WinThreshold"
+
+# Senha do Modo de Restauração
+ad_safe_mode_password: "@lunoFat3c"
+
+# Caminhos de instalação
+ad_db_path: "C:\\Windows\\NTDS"
+ad_log_path: "C:\\Windows\\NTDS"
+ad_sysvol_path: "C:\\Windows\\SYSVOL"
+
+# Configurações de DNS
+ad_install_dns: true
+ad_create_dns_delegation: false
+
+# Zonas reversas
+ad_reverse_networks:
+  - "10.10.10"
+  - "10.10.11"
+  - "10.10.100"
+  - "10.10.200"
+
+# Configurações de servidor DHCP
+dhcp_authorize_in_ad: true
+
+dhcp_scopes:
+  - name: Rede_10_10_10
+    scope_id: 10.10.10.0
+    subnet_mask: 255.255.255.0
+    start_range: 10.10.10.21
+    end_range: 10.10.10.253
+    gateway: 10.10.10.254
+    dns_servers:
+      - 10.10.100.11
+
+  - name: Rede_10_10_11
+    scope_id: 10.10.11.0
+    subnet_mask: 255.255.255.0
+    start_range: 10.10.11.21
+    end_range: 10.10.11.253
+    gateway: 10.10.11.254
+    dns_servers:
+      - 10.10.100.11

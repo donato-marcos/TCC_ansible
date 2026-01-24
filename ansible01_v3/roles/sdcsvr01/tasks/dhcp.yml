@@ -1,0 +1,151 @@
+---
+
+- name: Instalar feature DHCP
+  ansible.windows.win_feature:
+    name: "{{ item }}"
+    include_sub_features: true
+    include_management_tools: true
+    state: present
+  loop:
+    - DHCP
+    - RSAT-DHCP
+
+- name: Garantir serviço DHCP ativo
+  ansible.windows.win_service:
+    name: dhcpserver
+    start_mode: auto
+    state: started
+
+- name: Autorizar servidor DHCP no Active Directory
+  ansible.windows.win_powershell:
+    script: |
+      $fqdn = "$env:COMPUTERNAME.$((Get-ADDomain).DNSRoot)"
+
+      if (!($fqdn -eq (Get-DhcpServerInDC).DnsName)) {
+        netsh dhcp add securitygroups
+        Add-DhcpServerInDC `
+          -DnsName $fqdn
+        Set-ItemProperty `
+          –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 `
+          –Name ConfigurationState `
+          –Value 2
+        Write-Output "DHCP_AUTHORIZED"
+      }
+  register: dhcp_auth
+  changed_when: "'DHCP_AUTHORIZED' in dhcp_auth.output"
+  when: dhcp_authorize_in_ad
+
+- name: Configurar DHCP para usar conta para atualizações DNS (idempotente)
+  ansible.windows.win_powershell:
+    script: |
+      $current = (Get-DhcpServerDnsCredential).UserName
+
+      if (!($current -eq "{{ ansible_user }}")) {
+        netsh dhcp server set dnscredentials "{{ ansible_user }}" "{{ ad_netbios_name }}" "{{ ansible_password }}"
+        Write-Output "DNS_CREDENTIALS_UPDATED"
+      }
+  register: dhcp_creds_result
+  changed_when: "'DNS_CREDENTIALS_UPDATED' in dhcp_creds_result.output"
+
+- name: Garantir configuração correta de DNS dinâmico no DHCP
+  ansible.windows.win_powershell:
+    script: |
+      $current = Get-DhcpServerv4DnsSetting
+      $changed = $false
+
+      if ($current.DynamicUpdates -ne 'Always') {
+        Set-DhcpServerv4DnsSetting `
+          -DynamicUpdates Always
+        $changed = $true
+      }
+
+      if ($current.DeleteDnsRROnLeaseExpiry -ne $true) {
+        Set-DhcpServerv4DnsSetting `
+          -DeleteDnsRROnLeaseExpiry $true
+        $changed = $true
+      }
+
+      if ($current.UpdateDnsRRForOlderClients -ne $true) {
+        Set-DhcpServerv4DnsSetting `
+          -UpdateDnsRRForOlderClients $true
+        $changed = $true
+      }
+
+      if ($changed) {
+        Write-Output "DNS_SETTINGS_UPDATED"
+      }
+  register: dhcp_dns_settings
+  changed_when: "'DNS_SETTINGS_UPDATED' in dhcp_dns_settings.output"
+
+- name: Reiniciar serviço DHCP para aplicar autorização
+  ansible.windows.win_service:
+    name: dhcpserver
+    state: restarted
+  when: 
+    - dhcp_authorize_in_ad
+    - "'DHCP_AUTHORIZED' in dhcp_auth.output"
+
+- name: Criar e manter escopos DHCP (Gateway, DNS e Domain)
+  ansible.windows.win_powershell:
+    script: |
+      $changed = $false
+
+      # SCOPE
+      $currentScope = Get-DhcpServerv4Scope -ScopeId "{{ item.scope_id }}" -ErrorAction SilentlyContinue
+      if (!$currentScope) {
+        Add-DhcpServerv4Scope `
+          -Name "{{ item.name }}" `
+          -StartRange "{{ item.start_range }}" `
+          -EndRange "{{ item.end_range }}" `
+          -SubnetMask "{{ item.subnet_mask }}" `
+          -State Active
+        $changed = $true
+      }
+      elseif ($currentScope.Name -ne "{{ item.name }}") {
+        Set-DhcpServerv4Scope `
+          -ScopeId "{{ item.scope_id }}" `
+          -Name "{{ item.name }}"
+        $changed = $true
+      }
+
+      # OPTION 3 - GATEWAY
+      $currentGW = Get-DhcpServerv4OptionValue -ScopeId "{{ item.scope_id }}" -OptionId 3 -ErrorAction SilentlyContinue
+      if ($currentGW.Value -ne "{{ item.gateway }}") {
+        Set-DhcpServerv4OptionValue `
+          -ScopeId "{{ item.scope_id }}" `
+          -OptionId 3 `
+          -Value "{{ item.gateway }}"
+        $changed = $true
+      }
+
+      # OPTION 6 - DNS SERVERS
+      $desiredDNS = "{{ item.dns_servers | join(', ') }}"
+      $currentDNS = ((Get-DhcpServerv4OptionValue -ScopeId "{{ item.scope_id }}" -OptionId 6).Value ) -join(', ')
+      if ($currentDNS -ne $desiredDNS) {
+        Set-DhcpServerv4OptionValue `
+          -ScopeId "{{ item.scope_id }}" `
+          -OptionId 6 `
+          -Value {{ item.dns_servers | join(', ') }} `
+          -Force
+      $changed = $true
+      }
+
+      # OPTION 15 - DNS DOMAIN NAME
+      $currentDomain = Get-DhcpServerv4OptionValue -ScopeId "{{ item.scope_id }}" -OptionId 15 -ErrorAction SilentlyContinue
+      if ($currentDomain.Value -ne "{{ item.dns_domain }}") {
+        Set-DhcpServerv4OptionValue `
+          -ScopeId "{{ item.scope_id }}" `
+          -OptionId 15 `
+          -Value "{{ item.dns_domain }}"
+        $changed = $true
+      }
+
+      if ($changed) {
+        Write-Output "SCOPE_UPDATED"
+      }
+  loop: "{{ dhcp_scopes }}"
+  register: scope_result
+  loop_control:
+    label: "{{ item.name }} ({{ item.scope_id }})"
+  changed_when: "'SCOPE_UPDATED' in scope_result.output"
+ 

@@ -1,0 +1,25 @@
+---
+
+network:
+  version: 2
+  renderer: "{{ netplan_renderer }}"
+  ethernets:
+{% for iface in interfaces %}
+    {{ iface.name }}:
+      dhcp4: false
+      addresses:
+        - "{{ iface.ipv4 }}"
+{% if iface.gw4 is defined %}
+      routes:
+        - to: default
+          via: "{{ iface.gw4 }}"
+{% endif %}
+{% if iface.dns4 is defined %}
+      nameservers:
+        addresses:
+{% for dns in iface.dns4 %}
+          - "{{ dns }}"
+{% endfor %}
+{% endif %}
+      optional: {{ (not iface.autoconnect) | default(false) | lower }}
+{% endfor %}

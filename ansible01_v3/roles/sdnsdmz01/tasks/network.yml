@@ -1,0 +1,14 @@
+---
+
+- name: Configurar rede com Netplan
+  template:
+    src: template_netplan.yaml.j2
+    dest: "/etc/netplan/{{ netplan_filename }}"
+    owner: root
+    group: root
+    mode: '0600'
+    backup: true
+  notify: Aplicar Netplan
+
+- name: Forçar execução dos handlers agora
+  ansible.builtin.meta: flush_handlers

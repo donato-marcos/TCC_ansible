@@ -1,0 +1,34 @@
+---
+
+- name: Criar Unidades Organizacionais
+  microsoft.ad.ou:
+    name: "{{ item.name }}"
+    path: "{{ ad_base_dn }}"
+    state: present
+  loop: "{{ ad_departments }}"
+
+- name: Criar Grupos de Segurança
+  microsoft.ad.group:
+    name: "{{ item.group }}"
+    path: "OU={{ item.name }},{{ ad_base_dn }}"
+    scope: global
+    state: present
+  loop: "{{ ad_departments }}"
+
+- name: Criar Usuários
+  microsoft.ad.user:
+    identity: "{{ item.identity }}"
+    firstname: "{{ item.firstname }}"
+    surname: "{{ item.surname }}"
+    company: "{{ item.company }}"
+    path: "OU={{ item.dept }},{{ ad_base_dn }}"
+    password: "{{ ad_user_password }}"
+    password_expired: "{{ item.password_expired }}"
+    update_password: on_create
+    enabled: true
+    state: present
+    groups:
+      set: "{{ ['GRP_' ~ item.dept, 'Usuários do Domínio'] + (item.extra_groups | default([])) }}"
+  loop: "{{ ad_users }}"
+  loop_control:
+    label: "Provisionando: {{ item.identity }} ({{ item.dept }})"

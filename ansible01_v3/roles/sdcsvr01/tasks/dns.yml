@@ -1,0 +1,33 @@
+---
+
+- name: Criar Zona de Busca Reversa DNS (Integrada ao AD)
+  ansible.windows.win_dns_zone:
+    name: "{{ item.split('.') | reverse | join('.') }}.in-addr.arpa"
+    type: primary
+    replication: domain
+    dynamic_update: secure
+    state: present
+  loop: "{{ ad_reverse_networks }}"
+
+- name: Criar Registros (Forward)
+  ansible.windows.win_dns_record:
+    name: "{{ item.name }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    zone: "{{ ad_domain_name }}"
+    state: present
+  loop: "{{ records }}"
+  loop_control:
+    label: "{{ item.name }} {{ item.type }} -> {{ item.value }}"
+
+- name: Criar Registros PTR (Reverse)
+  ansible.windows.win_dns_record:
+    name: "{{ item.value.split('.')[-1] }}"
+    type: "PTR"
+    value: "{{ item.name }}.{{ ad_domain_name }}"
+    zone: "{{ item.value.split('.')[:-1] | reverse | join('.') }}.in-addr.arpa"
+    state: present
+  loop: "{{ records }}"
+  loop_control:
+    label: "PTR: {{ item.value }} -> {{ item.name }}"
+  when: item.type == "A"
