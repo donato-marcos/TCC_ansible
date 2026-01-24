@@ -1,3 +1,9 @@
+- name: Instalar firewalld
+  ansible.builtin.dnf:
+    name: 
+      - firewalld
+    state: present
+
 - name: Configurar firewall (apenas para Rocky Linux)
   ansible.posix.firewalld:
     service: "{{ item }}"
@@ -8,3 +14,8 @@
   when: ansible_distribution == "Rocky"
   notify: Restart NGINX
 
+- name: Habilitar serviço firewalld
+  ansible.builtin.systemd_service:
+    name: firewalld.service
+    enabled: true
+    starte: started
