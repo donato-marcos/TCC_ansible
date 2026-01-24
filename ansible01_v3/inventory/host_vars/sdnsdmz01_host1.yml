@@ -7,11 +7,11 @@ netplan_renderer: networkd
 netplan_filename: 01-ansible-netcfg.yaml
 interfaces:
   - name: enp1s0
-    ipv4: 10.10.200.10/24
-    gw4: 10.10.200.254
+    ipv4: 10.20.200.10/24
+    gw4: 10.20.200.254
     dns4:
-      - 10.10.200.10
-      - 10.10.100.11
+      - 10.20.200.10
+      - 10.20.100.10
     type: ethernet
     autoconnect: true
 
@@ -33,10 +33,10 @@ allow_query:
   - "10.0.0.0/8"
 
 records:
-  - { name: "sdnsdmz01", type: "A", value: "10.10.200.10" }
-  - { name: "www",       type: "A", value: "10.10.200.20" }
+  - { name: "sdnsdmz01", type: "A", value: "10.20.200.10" }
+  - { name: "www",       type: "A", value: "10.20.200.20" }
   - { name: "web",       type: "CNAME", value: "www"}
-  - { name: "teste",     type: "A", value: "10.10.200.50" }
+  - { name: "teste",     type: "A", value: "10.20.200.50" }
 ptr_records:
   - { ip: "10", name: "sdnsdmz01.fatec.lab" }
   - { ip: "20", name: "www.fatec.lab" }

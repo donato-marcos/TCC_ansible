@@ -24,11 +24,11 @@ ad_create_dns_delegation: false
 
 # Records para o DNS
 ad_reverse_networks:
-  - "10.10.10"
-  - "10.10.11"
-  - "10.10.100"
-  - "10.10.200"
-  - "10.10.1"
+  - "10.20.10"
+  - "10.20.11"
+  - "10.20.100"
+  - "10.20.200"
+  - "10.20.1"
 
 records:
   - { name: "sansiblesvr01", type: "A", value: "10.20.100.20" }

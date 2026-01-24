@@ -8,6 +8,6 @@ interfaces:
     address: dhcp
   - name: eth2
     description: uplink - CORE
-    address: 10.10.1.2/29
+    address: 10.20.1.2/29
 
   
