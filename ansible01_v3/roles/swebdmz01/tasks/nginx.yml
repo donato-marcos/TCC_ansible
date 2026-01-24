@@ -3,10 +3,6 @@
   ansible.builtin.dnf:
     name: 
       - nginx
-      - python3-policycoreutils
-      - policycoreutils-python-utils
-      - libselinux-python3
-      - python3-libselinux
     state: present
 
 #- name: Criar diretórios raiz dos sites

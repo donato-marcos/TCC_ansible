@@ -11,7 +11,7 @@ swebdmz01_host1 ansible_host=10.20.200.20
 nfirewall01_host1 ansible_host=10.21.1.2
 
 [sdnsdmz01_service]
-sdnsdmz01_host1 ansible_host=10.21.200.10
+sdnsdmz01_host1 ansible_host=10.20.200.10
 
 [clientes_win_service]
 clientes_host1 ansible_host=cwinfin01.fatec.lab

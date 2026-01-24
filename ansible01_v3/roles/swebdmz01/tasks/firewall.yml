@@ -4,6 +4,12 @@
       - firewalld
     state: present
 
+- name: Habilitar serviço firewalld
+  ansible.builtin.systemd_service:
+    name: firewalld.service
+    enabled: true
+    state: started
+
 - name: Configurar firewall (apenas para Rocky Linux)
   ansible.posix.firewalld:
     service: "{{ item }}"
@@ -13,9 +19,3 @@
   loop: "{{ firewall_services }}"
   when: ansible_distribution == "Rocky"
   notify: Restart NGINX
-
-- name: Habilitar serviço firewalld
-  ansible.builtin.systemd_service:
-    name: firewalld.service
-    enabled: true
-    starte: started
