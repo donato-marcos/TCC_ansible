@@ -1,0 +1,23 @@
+---
+collections:
+  # INFRAESTRUTURA WINDOWS
+  - name: microsoft.ad
+    version: ">=1.10.0"
+  - name: ansible.windows
+    version: ">=3.3.0"
+  - name: community.windows
+    version: ">=3.1.0"
+
+  # INFRAESTRUTURA LINUX
+  - name: ansible.posix
+    version: ">=2.1.0"
+  - name: community.general
+    version: ">=12.1.0"
+
+  # REDE E FIREWALL
+  - name: vyos.vyos
+    version: ">=6.0.0"
+  - name: ansible.netcommon
+    version: ">=8.2.0"
+  - name: community.network
+    version: ">=5.1.0"
