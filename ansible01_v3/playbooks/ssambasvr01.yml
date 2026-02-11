@@ -1,0 +1,6 @@
+---
+- name: Configurar servidor SAMBA
+  hosts: ssambasvr01_service
+  gather_facts: yes
+  roles:
+    - ssambasvr01

@@ -1,6 +1,6 @@
 ---
 - name: Configurar VyOS Firewall
-  hosts: sdcsvr01_service
+  hosts: nfirewall01_service
   gather_facts: no
   roles:
     - nfirewall01

@@ -4,10 +4,10 @@ hostname: nfirewall01
 
 interfaces:
   - name: eth0
-    description: WAN - Internet
+    description: "WAN - Internet"
+    enabled: true
     address: dhcp
-  - name: eth2
-    description: uplink - CORE
-    address: 10.20.1.2/29
-
-  
+  - name: eth1
+    description: "uplink - CORE"
+    enabled: true
+    address: 10.21.1.2/29

@@ -1,0 +1,6 @@
+---
+- name: Configurar clientes
+  hosts: clientes
+  gather_facts: yes
+  roles:
+    - clientes

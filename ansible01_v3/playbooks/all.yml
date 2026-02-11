@@ -1,9 +1,8 @@
 ---
-
 - import_playbook: nfirewall01.yml
-- import_playbook: ncore01.yml
+#- import_playbook: ncore01.yml
 - import_playbook: sdcsvr01.yml
-- import_playbook: ssambasvr01.yml
+#- import_playbook: ssambasvr01.yml
 - import_playbook: sdnsdmz01.yml
 - import_playbook: swebdmz01.yml
-- import_playbook: clientes.yml
+#- import_playbook: clientes.yml

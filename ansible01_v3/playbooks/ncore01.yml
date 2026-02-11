@@ -1,0 +1,6 @@
+---
+- name: Configurar VyOS Core/Distribuição
+  hosts: ncore01_service
+  gather_facts: no
+  roles:
+    - ncore01
