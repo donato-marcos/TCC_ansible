@@ -11,11 +11,11 @@
 [![Ansible](https://img.shields.io/badge/Ansible-12+-red.svg)](https://docs.ansible.com/)
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
 
-## 📌 Sobre o Projeto
+## Sobre o Projeto
 
 Este repositório contém os playbooks, inventários, roles e scripts desenvolvidos para o TCC *"Automação do Gerenciamento de Servidores com Ansible"*. O objetivo é demonstrar a aplicação prática de Infraestrutura como Código (IaC) para padronizar, automatizar e escalar a administração de servidores Linux (Debian/Ubuntu e Red Hat/Rocky) e Windows em ambientes heterogêneos.
 
-### ✨ Principais Funcionalidades
+### Principais Funcionalidades
 - ✅ Automação de configuração base (SSH, usuários, firewall)
 - ✅ Provisionamento de serviços: DNS (Bind9), Web (Nginx), DHCP
 - ✅ Suporte multi-distribuição com roles parametrizadas
