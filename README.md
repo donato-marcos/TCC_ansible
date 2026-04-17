@@ -3,7 +3,7 @@
 
 > Trabalho de Conclusão de Curso (TCC) – Tecnólogo em Redes de Computadores  
 > **Faculdade de Tecnologia de Osasco – FATEC Osasco**  
-> **Autoras:** Evellyn Patricia Adolfo & Marcos Donato  
+> **Autores:** Evellyn Patricia Adolfo & Marcos Donato  
 > **Orientador:** Prof. Dr. Francisco Eugenio Barrella  
 > **Ano:** 2026
 
