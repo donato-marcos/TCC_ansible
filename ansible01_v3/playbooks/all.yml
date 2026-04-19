@@ -1,22 +1,22 @@
 ---
 
 # - name: Configurar VyOS Firewall
-#   import_playbook: nfirewall01.yml
+#   ansible.builtin.import_playbook: nfirewall01.yml
 
 # - name: Configurar VyOS Core/Distribuição
-#   import_playbook: ncore01.yml
+#   ansible.builtin.import_playbook: ncore01.yml
 
 - name: Configurar ADDC Server
-  import_playbook: sdcsvr01.yml
+  ansible.builtin.import_playbook: sdcsvr01.yml
 
 # - name: Configurar SAMBA Server
-#   import_playbook: ssambasvr01.yml
+#   ansible.builtin.import_playbook: ssambasvr01.yml
 
 - name: Configurar DNS DMZ
-  import_playbook: sdnsdmz01.yml
+  ansible.builtin.import_playbook: sdnsdmz01.yml
 
 - name: Configurar Web DMZ
-  import_playbook: swebdmz01.yml
+  ansible.builtin.import_playbook: swebdmz01.yml
 
 # - name: Configurar Clientes
-#   import_playbook: clientes.yml
+#   ansible.builtin.import_playbook: clientes.yml

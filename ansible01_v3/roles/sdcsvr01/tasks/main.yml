@@ -11,17 +11,21 @@
   when: hostname_change.reboot_required
 
 - name: Configurar Domain Controller
-  ansible.builtin.import_tasks: ad_ds.yml
+  ansible.builtin.import_tasks:
+    file: ad_ds.yml
   tags: DC
 
 - name: Configurar DNS
-  ansible.builtin.import_tasks: dns.yml
+  ansible.builtin.import_tasks:
+    file: dns.yml
   tags: dns
 
 - name: Configurar DHCP server
-  ansible.builtin.import_tasks: dhcp.yml
+  ansible.builtin.import_tasks:
+    file: dhcp.yml
   tags: dhcp
 
 - name: Configurar usuários e grupos
-  ansible.builtin.import_tasks: users_groups.yml
+  ansible.builtin.import_tasks:
+    file: users_groups.yml
   tags: users
