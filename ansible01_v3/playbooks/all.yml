@@ -1,16 +1,16 @@
 ---
 
-- name: Configurar VyOS Firewall
-  import_playbook: nfirewall01.yml
+# - name: Configurar VyOS Firewall
+#   import_playbook: nfirewall01.yml
 
 # - name: Configurar VyOS Core/Distribuição
-# - import_playbook: ncore01.yml
+#   import_playbook: ncore01.yml
 
 - name: Configurar ADDC Server
   import_playbook: sdcsvr01.yml
 
 # - name: Configurar SAMBA Server
-# - import_playbook: ssambasvr01.yml
+#   import_playbook: ssambasvr01.yml
 
 - name: Configurar DNS DMZ
   import_playbook: sdnsdmz01.yml
@@ -19,4 +19,4 @@
   import_playbook: swebdmz01.yml
 
 # - name: Configurar Clientes
-# - import_playbook: clientes.yml
+#   import_playbook: clientes.yml
