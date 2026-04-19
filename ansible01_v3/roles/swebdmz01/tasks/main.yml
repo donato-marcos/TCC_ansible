@@ -9,7 +9,18 @@
   ansible.builtin.hostname:
     name: "{{ server_name }}.{{ domain_name }}"
 
-- include_tasks: network.yml
-- include_tasks: nginx.yml
-- include_tasks: firewall.yml
-- include_tasks: selinux.yml
+- name: Configurar Network
+  ansible.builtin.import_tasks:
+    file: network.yml
+
+- name: Configurar Web Nginx
+  ansible.builtin.import_tasks:
+    file: nginx.yml
+
+- name: Configurar Firewall
+  ansible.builtin.import_tasks:
+    file: firewall.yml
+
+- name: Configurar SELinux
+  ansible.builtin.import_tasks:
+    file: selinux.yml

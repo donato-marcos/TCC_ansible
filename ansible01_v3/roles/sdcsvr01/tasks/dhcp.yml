@@ -81,7 +81,7 @@
   ansible.windows.win_service:
     name: dhcpserver
     state: restarted
-  when: 
+  when:
     - dhcp_authorize_in_ad
     - "'DHCP_AUTHORIZED' in dhcp_auth.output"
 
@@ -148,4 +148,3 @@
   loop_control:
     label: "{{ item.name }} ({{ item.scope_id }})"
   changed_when: "'SCOPE_UPDATED' in scope_result.output"
- 

@@ -39,3 +39,6 @@ clientes_linux_service
 [vyos:children]
 ncore01_service
 nfirewall01_service
+
+[network:children]
+vyos

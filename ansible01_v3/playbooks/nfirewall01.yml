@@ -1,6 +1,7 @@
 ---
+
 - name: Configurar VyOS Firewall
   hosts: nfirewall01_service
-  gather_facts: no
+  gather_facts: false
   roles:
     - nfirewall01

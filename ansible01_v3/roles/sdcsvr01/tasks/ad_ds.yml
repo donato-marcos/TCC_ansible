@@ -18,11 +18,7 @@
     log_path: "{{ ad_log_path }}"
     sysvol_path: "{{ ad_sysvol_path }}"
     install_dns: "{{ ad_install_dns | bool }}"
-    create_dns_delegation: "{{ ad_create_dns_delegation | bool}}"
+    create_dns_delegation: "{{ ad_create_dns_delegation | bool }}"
     reboot: true
     reboot_timeout: 900
   register: ad_promotion_result
-
-
-
-

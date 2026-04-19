@@ -55,6 +55,3 @@
   loop_control:
     loop_var: item
   notify: Salvar configuração
-
-
-

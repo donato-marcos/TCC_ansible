@@ -2,7 +2,7 @@
 
 - name: Instalar pacotes necessários
   ansible.builtin.apt:
-    name: 
+    name:
       - bind9
       - bind9-dnsutils
     state: present
@@ -17,7 +17,7 @@
     backup: true
     validate: "named-checkconf %s"
   notify:
-    - Validar configuracao global 
+    - Validar configuracao global
     - Reiniciar o serviço BIND9
 
 - name: Configurar o arquivo /etc/bind/named.conf.local
@@ -30,7 +30,7 @@
     backup: true
     validate: "named-checkconf %s"
   notify:
-    - Validar configuracao global 
+    - Validar configuracao global
     - Reiniciar o serviço BIND9
 
 - name: Criar o arquivo de zona direta
@@ -43,7 +43,7 @@
     backup: true
     validate: "named-checkzone {{ zone_name }} %s"
   notify:
-    - Validar configuracao global 
+    - Validar configuracao global
     - Reiniciar o serviço BIND9
 
 - name: Criar o arquivo de zona reversa
@@ -56,7 +56,7 @@
     backup: true
     validate: "named-checkzone {{ reverse_zone }} %s"
   notify:
-    - Validar configuracao global 
+    - Validar configuracao global
     - Reiniciar o serviço BIND9
 
 - name: Iniciar o serviço BIND9

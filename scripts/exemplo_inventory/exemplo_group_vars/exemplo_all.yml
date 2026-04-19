@@ -37,7 +37,7 @@ ssh_public:
 # Usuários padrões
 default_users:
   - name: ansible
-    password: "@lunoFat3c"
+    password: "alunofatec"
     ssh_public_ref: ansible
 
 # Pacotes que *todos* os hosts devem instalar

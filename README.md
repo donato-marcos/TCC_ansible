@@ -7,7 +7,7 @@
 > **Orientador:** Prof. Dr. Francisco Eugenio Barrella  
 > **Ano:** 2026
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Ansible](https://img.shields.io/badge/Ansible-12+-red.svg)](https://docs.ansible.com/)
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
 

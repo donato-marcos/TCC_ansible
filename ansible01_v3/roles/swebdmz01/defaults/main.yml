@@ -1,4 +1,5 @@
 ---
+
 nginx_version: 1.20.1
 
 firewall_services:

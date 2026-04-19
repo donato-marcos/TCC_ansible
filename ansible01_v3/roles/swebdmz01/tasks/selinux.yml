@@ -40,4 +40,3 @@
     state: true
     persistent: true
   when: ansible_selinux.status == "enabled"
-

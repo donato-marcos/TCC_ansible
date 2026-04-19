@@ -2,7 +2,7 @@
 
 - name: Configurar Servidor Web
   hosts: swebdmz01_service
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
   roles:
     - swebdmz01

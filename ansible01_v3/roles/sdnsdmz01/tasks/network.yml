@@ -1,7 +1,7 @@
 ---
 
 - name: Configurar rede com Netplan
-  template:
+  ansible.builtin.template:
     src: template_netplan.yaml.j2
     dest: "/etc/netplan/{{ netplan_filename }}"
     owner: root
