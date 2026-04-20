@@ -1,5 +1,13 @@
+---
+
 server_name: swebdmz01
 domain_name: fatec.lab
+
+nginx_version: 1.20.1
+
+firewall_services:
+  - http
+  - https
 
 sites:
   - name: web

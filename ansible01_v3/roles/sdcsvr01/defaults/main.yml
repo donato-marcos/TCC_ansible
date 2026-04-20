@@ -1,9 +1,14 @@
 ---
+
+# Nome do servidor
+server_name: "sdcsvr01"
+
 # Configurações do Domínio
 ad_domain_name: "fatec.lab"
 ad_netbios_name: "FATEC"
 ad_domain_mode: "WinThreshold"
 ad_forest_mode: "WinThreshold"
+ad_base_dn: "DC=fatec,DC=lab"
 
 # Senha do Modo de Restauração
 ad_safe_mode_password: "@lunoFat3c"
@@ -17,31 +22,81 @@ ad_sysvol_path: "C:\\Windows\\SYSVOL"
 ad_install_dns: true
 ad_create_dns_delegation: false
 
-# Zonas reversas
+# Records para o DNS
 ad_reverse_networks:
-  - "10.10.10"
-  - "10.10.11"
-  - "10.10.100"
-  - "10.10.200"
+  - "10.20.10"
+  - "10.20.11"
+  - "10.20.100"
+  - "10.20.200"
+  - "10.21.1"
+
+records:
+  - { name: "sansiblesvr01", type: "A", value: "10.20.100.20" }
+  - { name: "ssambasvr01",   type: "A", value: "10.20.100.30" }
+  - { name: "sdnsdmz01",     type: "A", value: "10.20.200.10" }
+  - { name: "swebdmz01",     type: "A", value: "10.20.200.20" }
+  - { name: "www",           type: "CNAME", value: "swebdmz01.fatec.lab" }
+  - { name: "web",           type: "CNAME", value: "www.fatec.lab" }
+  - { name: "nfirewall01",   type: "A", value: "10.21.1.2",   }
+  - { name: "ncore01",       type: "A", value: "10.21.1.3",   }
 
 # Configurações de servidor DHCP
 dhcp_authorize_in_ad: true
 
 dhcp_scopes:
-  - name: Rede_10_10_10
-    scope_id: 10.10.10.0
+  - name: TI
+    scope_id: 10.20.10.0
     subnet_mask: 255.255.255.0
-    start_range: 10.10.10.21
-    end_range: 10.10.10.253
-    gateway: 10.10.10.254
+    start_range: 10.20.10.21
+    end_range: 10.20.10.253
+    gateway: 10.20.10.254
     dns_servers:
-      - 10.10.100.11
+      - 10.20.100.10
+      - 10.20.100.11
+    dns_domain: fatec.lab
 
-  - name: Rede_10_10_11
-    scope_id: 10.10.11.0
+  - name: Financeiro
+    scope_id: 10.20.11.0
     subnet_mask: 255.255.255.0
-    start_range: 10.10.11.21
-    end_range: 10.10.11.253
-    gateway: 10.10.11.254
+    start_range: 10.20.11.21
+    end_range: 10.20.11.253
+    gateway: 10.20.11.254
     dns_servers:
-      - 10.10.100.11
+      - 10.20.100.10
+    dns_domain: fatec.lab
+
+# Configurações para usuários
+ad_user_password: "@lunoFat3c2025"
+
+ad_departments:
+  - name: "Financeiro"
+    group: "GRP_Financeiro"
+  - name: "TI"
+    group: "GRP_TI"
+
+ad_users:
+  - identity: "admin01"
+    firstname: "Henrique"
+    surname: "Mequinho"
+    dept: "TI"
+    company: "FATEC Lab"
+    extra_groups: 
+      - "Administradores do Domínio"
+    password_expired: false
+    can_login: true
+  
+  - identity: "admin02"
+    firstname: "Ana"
+    surname: "Bolana"
+    dept: "TI"
+    company: "FATEC Lab"
+    can_login: false
+    password_expired: false
+  
+  - identity: "fin01"
+    firstname: "Jão"
+    surname: "Adão"
+    dept: "Financeiro"
+    company: "FATEC Lab"
+    can_login: false
+    password_expired: false

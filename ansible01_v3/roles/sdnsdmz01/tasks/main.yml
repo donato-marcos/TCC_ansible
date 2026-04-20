@@ -10,10 +10,10 @@
   ansible.builtin.hostname:
     name: "{{ server_name }}.{{ domain_name }}"
 
-- name: Configurar Network
-  ansible.builtin.import_tasks:
-    file: network.yml
-
 - name: Configurar Bind DNS
   ansible.builtin.import_tasks:
     file: bind.yml
+
+- name: Configurar Network
+  ansible.builtin.import_tasks:
+    file: network.yml
