@@ -1,0 +1,25 @@
+---
+
+hostname: ncore01
+
+interfaces:
+  - name: eth0
+    description: "uplink-net"
+    enabled: true
+    address: 10.21.1.3/29
+  - name: eth1
+    description: "dmz-net"
+    enabled: true
+    address: 10.20.200.254/24
+  - name: eth2
+    description: "servers-net"
+    enabled: true
+    address: 10.20.100.254/24
+  - name: eth3
+    description: "clientes_ti-net"
+    enabled: true
+    address: 10.20.10.254/24
+  - name: eth4
+    description: "clientes_fin-net"
+    enabled: true
+    address: 10.20.11.254/24

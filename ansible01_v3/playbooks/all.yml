@@ -1,10 +1,10 @@
 ---
 
-# - name: Configurar VyOS Firewall
-#   ansible.builtin.import_playbook: nfirewall01.yml
+- name: Configurar VyOS Firewall
+  ansible.builtin.import_playbook: nfirewall01.yml
 
-# - name: Configurar VyOS Core/Distribuição
-#   ansible.builtin.import_playbook: ncore01.yml
+- name: Configurar VyOS Core/Distribuição
+  ansible.builtin.import_playbook: ncore01.yml
 
 - name: Configurar ADDC Server
   ansible.builtin.import_playbook: sdcsvr01.yml
