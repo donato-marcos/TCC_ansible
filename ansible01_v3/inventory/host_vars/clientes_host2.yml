@@ -1,0 +1,13 @@
+server_name: "cwinfin01" 
+domain_name: "fatec.lab"
+
+ad_realm_name: "FATEC.LAB"
+
+#interfaces:
+#  - name: enp1s0
+#    ipv4: 10.20.200.10/24
+#    gw4: 10.20.200.254
+#    dns4:
+#      - 10.20.200.10
+#    type: ethernet
+#    autoconnect: true

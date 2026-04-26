@@ -1,0 +1,13 @@
+server_name: "clinuxti03"
+domain_name: "fatec.lab"
+
+#netplan_renderer: networkd
+#netplan_filename: 01-ansible-netcfg.yaml
+#interfaces:
+#  - name: enp1s0
+#    ipv4: 10.20.200.10/24
+#    gw4: 10.20.200.254
+#    dns4:
+#      - 10.20.200.10
+#    type: ethernet
+#    autoconnect: true

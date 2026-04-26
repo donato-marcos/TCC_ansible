@@ -6,8 +6,8 @@ interfaces:
   - name: eth0
     description: "WAN - Internet"
     enabled: true
-    address: dhcp
+    address: 192.168.0.20/24
   - name: eth1
-    description: "uplink - CORE"
+    description: "uplink-net"
     enabled: true
     address: 10.21.1.2/29

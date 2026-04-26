@@ -1,5 +1,23 @@
 ---
 
+- name: Adicionar Forward
+  ansible.windows.win_powershell:
+    script: |
+      $desired = "{{ forwarders | join(', ') }}"
+      $current = ((Get-DnsServerForwarder).IPAddress.IPAddressToString) -join(', ')
+      $changed = $false
+      
+      if ($current -ne $desired ) {
+        Set-DnsServerForwarder -IPAddress {{ forwarders | join(', ') }}
+        $changed = $true
+      }
+      
+      if ($changed) {
+        Write-Output "DNS_FORWARDERS_UPDATED"
+      }
+  register: dns_forwarders_result
+  changed_when: "'DNS_FORWARDERS_UPDATED' in dns_forwarders_result.output"
+
 - name: Criar Zona de Busca Reversa DNS (Integrada ao AD)
   ansible.windows.win_dns_zone:
     name: "{{ item.split('.') | reverse | join('.') }}.in-addr.arpa"

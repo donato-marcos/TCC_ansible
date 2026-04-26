@@ -1,0 +1,11 @@
+---
+
+- name: Configurar nome do servidor
+  ansible.windows.win_hostname:
+    name: "{{ server_name }}"
+  register: hostname_change
+
+- name: Reiniciar se o nome for alterado
+  ansible.windows.win_reboot:
+    reboot_timeout: 600
+  when: hostname_change.reboot_required

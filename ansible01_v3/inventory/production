@@ -13,11 +13,11 @@ nfirewall01_host1 ansible_host=10.21.1.2
 [sdnsdmz01_service]
 sdnsdmz01_host1 ansible_host=10.20.200.10
 
-[clientes_win_service]
-clientes_host1 ansible_host=cwinfin01.fatec.lab
-
 [clientes_linux_service]
-clientes_host2 ansible_host=clinuxti02.fatec.lab
+clientes_host1 ansible_host=clinuxti03.fatec.lab
+
+[clientes_win_service]
+clientes_host2 ansible_host=cwinfin03.fatec.lab
 
 [ncore01_service]
 ncore01_host1 ansible_host=10.21.1.3

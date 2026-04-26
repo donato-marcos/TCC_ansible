@@ -22,6 +22,12 @@ ad_sysvol_path: "C:\\Windows\\SYSVOL"
 ad_install_dns: true
 ad_create_dns_delegation: false
 
+forwarders:
+  - "10.20.200.20"
+  - "208.67.222.222"
+  - "8.8.8.8"
+  - "1.1.1.1"
+
 # Records para o DNS
 ad_reverse_networks:
   - "10.20.10"
