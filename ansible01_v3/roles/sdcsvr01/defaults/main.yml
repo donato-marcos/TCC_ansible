@@ -9,6 +9,7 @@ ad_netbios_name: "FATEC"
 ad_domain_mode: "WinThreshold"
 ad_forest_mode: "WinThreshold"
 ad_base_dn: "DC=fatec,DC=lab"
+ad_realm_name: "FATEC.LAB"
 
 # Senha do Modo de Restauração
 ad_safe_mode_password: "@lunoFat3c"

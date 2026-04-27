@@ -1,0 +1,50 @@
+---
+
+- name: Instalar pacotes necessários para AD
+  ansible.builtin.dnf:
+    name:
+      - sssd
+      - realmd
+      - oddjob
+      - oddjob-mkhomedir
+      - adcli
+      - samba-common
+      - samba-common-tools
+      - krb5-workstation
+      - openldap-clients
+      - python3-policycoreutils
+      - policycoreutils-python-utils
+      - libselinux-python3
+      - python3-libselinux
+      - python3-pexpect
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Verificar se ja esta no dominio
+  ansible.builtin.command: realm list
+  register: realm_list
+  changed_when: false
+
+- name: Join no domínio Active Directory
+  ansible.builtin.expect:
+    command: "realm join --user={{ ad_user }} {{ domain_name }} -v"
+    responses:
+      Password for *: "{{ ad_password }}"
+  when: domain_name not in realm_list.stdout
+
+- name: Aplicar template do SSSD
+  ansible.builtin.template:
+    src: template_sssd.conf.j2
+    dest: /etc/sssd/sssd.conf
+    mode: '0600'
+  notify: Reiniciar SSSD
+
+- name: Ativar SSSD no Authselect com mkhomedir
+  ansible.builtin.command: authselect current
+
+- name: Garantir que serviços estão rodando
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop: [sssd, oddjobd]

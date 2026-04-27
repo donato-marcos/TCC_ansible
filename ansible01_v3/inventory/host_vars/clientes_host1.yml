@@ -1,6 +1,8 @@
 server_name: "clinuxti03"
 domain_name: "fatec.lab"
 
+ad_realm_name: "FATEC.LAB"
+
 #netplan_renderer: networkd
 #netplan_filename: 01-ansible-netcfg.yaml
 #interfaces:
@@ -11,3 +13,6 @@ domain_name: "fatec.lab"
 #      - 10.20.200.10
 #    type: ethernet
 #    autoconnect: true
+
+ad_user: "Administrador"
+ad_password: "@lunoFat3c"

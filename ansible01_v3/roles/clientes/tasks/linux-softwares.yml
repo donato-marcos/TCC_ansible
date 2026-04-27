@@ -1,0 +1,9 @@
+---
+
+- name: Instalar softwares no cliente Linux
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+  loop_control:
+    label: "Instalando: {{ item }}"

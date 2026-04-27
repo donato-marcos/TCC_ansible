@@ -31,3 +31,4 @@ packages:
   - htop
   - btop
   - tmux
+  - git

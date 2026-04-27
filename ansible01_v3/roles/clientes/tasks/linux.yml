@@ -18,3 +18,11 @@
 #  ansible.builtin.import_tasks:
 #    file: network-netplan.yml
 #  when: ansible_os_family == "Debian"
+
+- name: Instalando pacotes
+  ansible.builtin.import_tasks:
+    file: linux-softwares.yml
+
+- name: Adicionar cliente Linux ao domínio
+  ansible.builtin.import_tasks:
+    file: linux-add_member-ad.yml

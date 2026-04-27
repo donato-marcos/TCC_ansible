@@ -9,3 +9,11 @@
   ansible.windows.win_reboot:
     reboot_timeout: 600
   when: hostname_change.reboot_required
+
+- name: Instalando pacotes
+  ansible.builtin.import_tasks:
+    file: win-softwares.yml
+
+- name: Adicionar cliente Windows ao domínio
+  ansible.builtin.import_tasks:
+    file: win-add_member-ad.yml

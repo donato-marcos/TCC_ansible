@@ -18,5 +18,5 @@
 - name: Configurar Web DMZ
   ansible.builtin.import_playbook: swebdmz01.yml
 
-# - name: Configurar Clientes
-#   ansible.builtin.import_playbook: clientes.yml
+- name: Configurar Clientes
+  ansible.builtin.import_playbook: clientes.yml
