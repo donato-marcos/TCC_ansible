@@ -32,7 +32,7 @@ temp_dir: "C:\\Temp"
 
 # Pacotes Windows (via Chocolatey, WinGet, etc.)
 packages:
-  - googlechrome
+#  - googlechrome
   - 7zip
   - notepadplusplus
   - git

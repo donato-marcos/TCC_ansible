@@ -7,6 +7,8 @@ collections:
     version: ">=3.3.0"
   - name: community.windows
     version: ">=3.1.0"
+  - name: chocolatey.chocolatey
+    version: ">=1.6.0"
 
   # INFRAESTRUTURA LINUX
   - name: ansible.posix

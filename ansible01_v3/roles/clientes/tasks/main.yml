@@ -4,8 +4,10 @@
   ansible.builtin.import_tasks:
     file: linux.yml
   when: ansible_system == "Linux"
+  tags: linux
 
 - name: Configurar clientes Windows
   ansible.builtin.import_tasks:
     file: win.yml
   when: ansible_os_family == "Windows"
+  tags: windows

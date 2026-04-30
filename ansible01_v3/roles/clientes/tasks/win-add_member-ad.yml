@@ -3,9 +3,10 @@
 - name: Adicionar Windows ao Domínio e definir Hostname
   microsoft.ad.membership:
     dns_domain_name: "{{ domain_name }}"
-    domain_admin_user: "{{ ad_user }}@{{ domain_name }}"
+    domain_admin_user: "{{ ad_user }}@{{ ad_realm_name }}"
     domain_admin_password: "{{ ad_password }}"
     hostname: "{{ server_name }}"
     state: domain
     reboot: true
     reboot_timeout: 600
+  tags: debug_add_domain
