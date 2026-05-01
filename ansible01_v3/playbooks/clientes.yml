@@ -1,7 +1,13 @@
 ---
 
-- name: Configurar clientes
-  hosts: clientes
+- name: Configurar clientes linux
+  hosts: clientes_linux_service
   gather_facts: true
   roles:
-    - clientes
+    - clientes_linux
+
+- name: Configurar clientes win
+  hosts: clientes_win_service
+  gather_facts: true
+  roles:
+    - clientes_win

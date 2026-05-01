@@ -7,7 +7,7 @@ ad_user: "Administrador"
 ad_password: "@lunoFat3c"
 
 packages:
-  - googlechrome
+#  - googlechrome
   - 7zip
   - notepadplusplus
   - git
