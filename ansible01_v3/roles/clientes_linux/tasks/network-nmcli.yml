@@ -18,4 +18,3 @@
 
 - name: Forçar execução dos handlers agora
   ansible.builtin.meta: flush_handlers
-

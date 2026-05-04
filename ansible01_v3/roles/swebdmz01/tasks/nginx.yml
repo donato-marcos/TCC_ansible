@@ -2,7 +2,7 @@
 
 - name: Instalar NGINX
   ansible.builtin.dnf:
-    name: 
+    name:
       - nginx
     state: present
 

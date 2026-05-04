@@ -1,7 +1,8 @@
 ---
+
 - name: Pacotes necessários para gerenciar o SELinux
   ansible.builtin.dnf:
-    name: 
+    name:
       - python3-policycoreutils
       - policycoreutils-python-utils
       - libselinux-python3

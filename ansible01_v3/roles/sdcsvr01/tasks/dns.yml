@@ -6,12 +6,12 @@
       $desired = "{{ forwarders | join(', ') }}"
       $current = ((Get-DnsServerForwarder).IPAddress.IPAddressToString) -join(', ')
       $changed = $false
-      
+
       if ($current -ne $desired ) {
         Set-DnsServerForwarder -IPAddress {{ forwarders | join(', ') }}
         $changed = $true
       }
-      
+
       if ($changed) {
         Write-Output "DNS_FORWARDERS_UPDATED"
       }

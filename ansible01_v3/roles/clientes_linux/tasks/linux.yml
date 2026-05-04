@@ -9,15 +9,15 @@
   ansible.builtin.hostname:
     name: "{{ server_name }}.{{ domain_name }}"
 
-#- name: Configurar Network - NMCLI
-#  ansible.builtin.import_tasks:
-#    file: network-nmcli.yml
-#  when: ansible_os_family == "RedHat"
+# - name: Configurar Network - NMCLI
+#   ansible.builtin.import_tasks:
+#     file: network-nmcli.yml
+#   when: ansible_os_family == "RedHat"
 #
-#- name: Configurar Network - NETPLAN
-#  ansible.builtin.import_tasks:
-#    file: network-netplan.yml
-#  when: ansible_os_family == "Debian"
+# - name: Configurar Network - NETPLAN
+#   ansible.builtin.import_tasks:
+#     file: network-netplan.yml
+#   when: ansible_os_family == "Debian"
 
 - name: Instalando pacotes
   ansible.builtin.import_tasks:
