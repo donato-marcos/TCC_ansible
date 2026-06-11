@@ -19,5 +19,5 @@
     immediate: true
     state: enabled
   loop: "{{ firewall_services }}"
-  when: ansible_distribution == "Rocky"
+  when: ansible_facts.distribution == "Rocky"
   notify: Restart NGINX

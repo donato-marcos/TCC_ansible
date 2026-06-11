@@ -3,5 +3,5 @@
 - name: Configurar clientes Windows
   ansible.builtin.import_tasks:
     file: win.yml
-  when: ansible_os_family == "Windows"
+  when: ansible_facts.os_family == "Windows"
   tags: windows

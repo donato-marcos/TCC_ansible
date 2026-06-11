@@ -3,5 +3,5 @@
 - name: Configurar clientes Linux
   ansible.builtin.import_tasks:
     file: linux.yml
-  when: ansible_system == "Linux"
+  when: ansible_facts.system == "Linux"
   tags: linux

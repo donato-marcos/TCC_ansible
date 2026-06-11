@@ -3,7 +3,7 @@
 - name: Configurar o arquivo /etc/hosts
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "{{ ansible_default_ipv4.address }} {{ server_name }}.{{ domain_name }} {{ server_name }}"
+    line: "{{ ansible_facts.default_ipv4.address }} {{ server_name }}.{{ domain_name }} {{ server_name }}"
 
 - name: Configurar o hostname
   ansible.builtin.hostname:
@@ -12,12 +12,12 @@
 # - name: Configurar Network - NMCLI
 #   ansible.builtin.import_tasks:
 #     file: network-nmcli.yml
-#   when: ansible_os_family == "RedHat"
+#   when: ansible_facts.os_family == "RedHat"
 #
 # - name: Configurar Network - NETPLAN
 #   ansible.builtin.import_tasks:
 #     file: network-netplan.yml
-#   when: ansible_os_family == "Debian"
+#   when: ansible_facts.os_family == "Debian"
 
 - name: Instalando pacotes
   ansible.builtin.import_tasks:
