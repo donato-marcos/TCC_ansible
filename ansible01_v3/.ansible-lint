@@ -1,0 +1,22 @@
+profile: moderate
+
+exclude_paths:
+  - .cache/
+  - .github/
+  - changelogs/
+  - collections/
+  - molecule/*/converge.yml
+  - test/
+
+skip_list:
+  - yaml[line-length]
+  - yaml[comments]
+  - no-changed-when
+  - var-naming[no-role-prefix]
+
+warn_list:
+  - experimental
+  - fqcn[action-core]
+  - name[case]
+
+offline: false

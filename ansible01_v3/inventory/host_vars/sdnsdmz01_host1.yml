@@ -1,6 +1,6 @@
 ---
 
-server_name: "sdnsdmz01" 
+server_name: "sdnsdmz01"
 domain_name: "fatec.lab"
 
 netplan_renderer: networkd
@@ -33,9 +33,9 @@ allow_query:
 
 records:
   - { name: "sdnsdmz01", type: "A", value: "10.20.200.10" }
-  - { name: "www",       type: "A", value: "10.20.200.20" }
-  - { name: "web",       type: "CNAME", value: "www"}
-  - { name: "teste",     type: "A", value: "10.20.200.50" }
+  - { name: "www", type: "A", value: "10.20.200.20" }
+  - { name: "web", type: "CNAME", value: "www"}
+  - { name: "teste", type: "A", value: "10.20.200.50" }
 ptr_records:
   - { ip: "10", name: "sdnsdmz01.fatec.lab" }
   - { ip: "20", name: "www.fatec.lab" }

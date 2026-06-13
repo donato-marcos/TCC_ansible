@@ -13,7 +13,6 @@ ansible_password: "@lunoFat3c"
 #
 # ================== CONFIGURAÇÃO WINDOWS - SSH ==================
 
-# Usuário via SSH
 #ansible_user: ansible
 #
 #ansible_connection: ssh
